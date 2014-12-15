@@ -1,0 +1,4 @@
+services:
+#    abba_pensees.example:
+#        class: Abba\PenseesBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

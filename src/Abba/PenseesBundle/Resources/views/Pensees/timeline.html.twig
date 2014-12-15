@@ -1,0 +1,31 @@
+{# http://bootsnipp.com/snippets/featured/timeline-responsive #}
+
+{# <div class="container"> #}
+	<div class="page-header">
+			<h1 id="timeline">Timeline</h1>
+	</div>
+	<ul class="timeline">
+	{% for p in pensees %}
+		<li {% if (loop.index % 2) > 0  %}class="timeline-inverted" {% endif %}>
+			<div class="timeline-badge info"><i class="glyphicon glyphicon-user"></i></div>
+			<div class="timeline-panel">
+				<div class="timeline-heading">
+					<h4 class="timeline-title">{{ p.auteur.nom }}</h4>
+				</div>
+				<div class="timeline-body">
+					<p>{{ p.contenu }}</p>
+				</div>
+				<div class="btn-group pull-right">
+						<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+							<i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="{{ path('editerCitation', {'id' : p.id} ) }}">Modifier</a></li>
+							<li><a href="{{ path('supprimerCitation', {'id' : p.id} ) }}">Supprimer</a></li>
+						</ul>
+					</div>
+			</div>
+		</li>
+	{% endfor %}
+	</ul>
+{# </div> #}

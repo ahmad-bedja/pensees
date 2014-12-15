@@ -1,0 +1,23 @@
+homepage:
+    path:     /
+    defaults: { _controller: AbbaPenseesBundle:Pensees:index }
+
+nouvelAuteur:
+    path: /nouvelAuteur
+    defaults: { _controller: AbbaPenseesBundle:Pensees:nouvelAuteur}
+
+nouvelleCitation:
+    path: /nouvelleCitation
+    defaults: { _controller: AbbaPenseesBundle:Pensees:nouvelleCitation}
+
+editerCitation:
+    path: /editerCitation/{id}
+    defaults: { _controller: AbbaPenseesBundle:Pensees:editerCitation}
+    requirements:
+        id: \d+
+
+supprimerCitation:
+    path: /supprimerCitation/{id}
+    defaults: { _controller: AbbaPenseesBundle:Pensees:supprimerCitation}
+    requirements:
+        id: \d+

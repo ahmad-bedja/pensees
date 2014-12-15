@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width">
+		
+		<title>Les Pensées</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('bundles/abbapensees/css/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('bundles/abbapensees/css/main.css') }}">
+		{% endblock %}		
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="jumbotron text-center">
+			<h1><a href="{{ path('homepage') }}">Les Pensées, morceaux choisis</a></h1>
+			<div class="col-md-12">
+					<a href="{{ path('nouvelAuteur') }}" class="btn btn-default" role="button">Ajouter un auteur</a>
+					<a href="{{ path('nouvelleCitation') }}" class="btn btn-default" role="button">Ajouter une citation</a>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			{# si un message est dans le flashbag on l'affiche #}
+			{% for flashMessage in app.session.flashbag.get('success') %}
+				{% include "AbbaPenseesBundle:Pensees:alert.html.twig"%}
+			{% endfor %}
+			{% block main %}
+			{% endblock %}
+		</div>
+			{# <div class="row">
+				<div class="col-md-2 side">
+					<a href="{{ path('nouvelAuteur') }}" class="btn btn-primary" role="button">Ajouter un auteur</a>
+					<a href="{{ path('nouvelleCitation') }}" class="btn btn-primary" role="button">Ajouter une citation</a>
+				</div>
+				<div class="col-md-10 main">
+					{% block main %}
+						
+					{% endblock %}
+				</div>
+			</div> 
+		</div> #}
+
+		<!-- Js libraries -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write("<script src='{{ asset('bundles/abbapensees/js/vendor/jquery-1.10.1.min.js')}}''>\x3c/script>")</script>
+		<script src="{{ asset('bundles/abbapensees/js/vendor/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('bundles/abbapensees/js/main.js') }}"></script>
+	
+	</body>
+</html>

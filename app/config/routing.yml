@@ -1,0 +1,3 @@
+abba_pensees:
+    resource: "@AbbaPenseesBundle/Resources/config/routing.yml"
+    prefix:   /

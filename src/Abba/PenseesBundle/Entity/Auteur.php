@@ -1,0 +1,139 @@
+<?php
+
+namespace Abba\PenseesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+/**
+ * Auteur
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Abba\PenseesBundle\Entity\AuteurRepository")
+ */
+class Auteur
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", unique=true, length=50)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profession", type="string", length=100,nullable=true)
+     */
+    private $profession;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Citation", mappedBy="auteur")
+     */
+    protected $citations;
+
+    public function __construct()
+    {
+        $this->citations = new ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Auteur
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set profession
+     *
+     * @param string $profession
+     * @return Auteur
+     */
+    public function setProfession($profession)
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    /**
+     * Get profession
+     *
+     * @return string 
+     */
+    public function getProfession()
+    {
+        return $this->profession;
+    }
+
+    /**
+     * Add citations
+     *
+     * @param \Abba\PenseesBundle\Entity\Citation $citations
+     * @return Auteur
+     */
+    public function addCitation(\Abba\PenseesBundle\Entity\Citation $citations)
+    {
+        $this->citations[] = $citations;
+
+        return $this;
+    }
+
+    /**
+     * Remove citations
+     *
+     * @param \Abba\PenseesBundle\Entity\Citation $citations
+     */
+    public function removeCitation(\Abba\PenseesBundle\Entity\Citation $citations)
+    {
+        $this->citations->removeElement($citations);
+    }
+
+    /**
+     * Get citations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCitations()
+    {
+        return $this->citations;
+    }
+}
